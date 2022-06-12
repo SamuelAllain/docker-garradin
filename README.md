@@ -6,7 +6,13 @@ Garradin on Alpine Linux with Docker. With Alpine 3.1.16, PHP 8.1 and Nginx 1.22
 
 Pre-requisite : *Docker Desktop*.
 
-Build the image and launch the container :
+**Option 1** from [*Docker Hub*](https://hub.docker.com/r/samuelallain/garradin) : download the image and launch the container in one line
+```
+sudo docker run -d -t --name ga -p 80:80 -v vol-ga:/var/www/garradin/data/ samuelallain/garradin 
+```
+
+
+**Option 2** from the *Github* repository : build the image and launch the container
 
 ```
 # clone the repository
@@ -19,7 +25,9 @@ sudo docker build -t garradin .
 # launch the container
 sudo docker run -d -t --name ga -p 80:80 -v vol-ga:/var/www/garradin/data/ garradin 
 ```
-Then open [http://localhost:80](http://localhost:80) in your browser.
+**Then open [http://localhost:80](http://localhost:80) in your browser.**
+
+<hr>
 
 To stop and remove the container
 ```
