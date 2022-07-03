@@ -94,3 +94,10 @@ Depending on this, you may want a newer or an older Alpine version, so that the 
 For instance, I experienced a crash because the PHP function `finfo_open()`, provided by the module *php81-fileinfo*, was not found.
 Indeed the module was not installed.
 I added it to the `RUN apk add` line in the **Dockerfile**
+
+### Plugins
+
+(Thanks @gromain) I have put all available plugins as of July 3rd, 2022 in the docker image.
+You can install more plugins as explained [here](https://fossil.kd2.org/garradin-plugins/index).
+You need to download the `.tar.gz` in the directory `/var/www/garradin/data/plugins` and then connect to garradin (*localhost:80*) > *Configuration* > *Plugins* and then tick and install desired plugins.
+**DomPDF** requires **php-zip**.
