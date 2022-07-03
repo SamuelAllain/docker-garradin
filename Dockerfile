@@ -7,7 +7,7 @@ LABEL Description="Garradin on Alpine Linux with Docker"
 WORKDIR /var/www/
 
 # Change the version here
-ENV GARRADIN_VERSION 1.1.25
+ENV GARRADIN_VERSION 1.1.26
 
 # Install packages and remove default server definition
 RUN apk add --no-cache \
@@ -34,6 +34,7 @@ RUN apk add --no-cache \
   php81-xml \
   php81-xmlreader \
   php81-zlib \
+  php81-zip \
   supervisor \
   gettext
 
@@ -42,6 +43,22 @@ RUN curl -L -O https://fossil.kd2.org/garradin/uv/garradin-$GARRADIN_VERSION.tar
 RUN tar xzvf garradin-$GARRADIN_VERSION.tar.gz # extract
 RUN mv garradin-$GARRADIN_VERSION /var/www/garradin # root of the website
 RUN rm -r garradin-$GARRADIN_VERSION.tar.gz # cleaning
+
+# Download and install plugins
+RUN cd /var/www/garradin/data/plugins && \
+curl -L -O https://fossil.kd2.org/garradin-plugins/uv/ouvertures.tar.gz ; \
+curl -L -O https://fossil.kd2.org/garradin-plugins/uv/stock_velos.tar.gz ; \
+curl -L -O https://fossil.kd2.org/garradin-plugins/uv/reservations.tar.gz ; \
+curl -L -O https://fossil.kd2.org/garradin-plugins/uv/webstats.tar.gz ; \
+curl -L -O https://fossil.kd2.org/garradin-plugins/uv/dompdf.tar.gz ; \ 
+curl -L -O https://fossil.kd2.org/garradin-plugins/uv/git_documents.tar.gz ; \
+curl -L -O https://fossil.kd2.org/garradin-plugins/uv/taima.tar.gz ; \
+curl -L -O https://fossil.kd2.org/garradin-plugins/uv/caisse.tar.gz ;
+#RUN curl -L -O https://fossil.kd2.org/garradin-plugins/uv/helloasso.tar.gz
+#RUN curl -L -O https://fossil.kd2.org/garradin-plugins/uv/dompdf.tar.gz
+#RUN curl -L -O https://fossil.kd2.org/garradin-plugins/uv/taima.tar.gz
+#RUN mv helloasso.tar.gz /var/www/garradin/data/plugins/
+#RUN mv *.tar.gz /var/www/garradin/data/plugins/
 
 # Create symlink so programs depending on `php` still function
 RUN ln -s /usr/bin/php81 /usr/bin/php
