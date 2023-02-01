@@ -21,13 +21,13 @@ RUN apk add --no-cache \
   php81-gd \
   php81-intl \
   php81-mbstring \
-  php81-mysqli \
+  #php81-mysqli \
   php81-opcache \
   php81-openssl \
   php81-phar \
   php81-session \
   php81-sqlite3 \
-  php81-pdo_sqlite \
+  #php81-pdo_sqlite \
   php81-fileinfo \
   php81-json \
   php81-openssl \
